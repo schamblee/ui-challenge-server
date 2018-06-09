@@ -9,13 +9,11 @@ const jwt = require('jsonwebtoken');
 
 const config = require('../config');
 const router = express.Router();
-const { localAuth, createAuthToken } = require('../authConfig')
-
 
 router.use(bodyParser.json());
 
 
-router.get('/employees', (req, res) => {
+router.get('/', (req, res) => {
   Employee
     router.get('/', (req, res) => {
       return User.find()
@@ -41,9 +39,12 @@ router.post('/', (req, res) => {
       lastName: req.body.lastName,
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
-      street: req.body.address.street,
-      state: req.body.address.state,
-      zipcode: req.body.address.zipcode,
+      address: {
+        street: req.body.street,
+        state: req.body.state,
+        city: req.body.city,
+        zipcode: req.body.zipcode,
+      },
       organization: req.body.organization,
       department: req.body.department,
       title: req.body.title

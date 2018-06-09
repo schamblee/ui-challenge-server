@@ -21,6 +21,7 @@ const EmployeeSchema = mongoose.Schema({
   },
   address: {
     street: String,
+    city: String,
     state: String,
     zipcode: String
   },
