@@ -1,4 +1,10 @@
  language: node_js
- node_js: node
+ node_js: "8"
  services:
      - mongodb
+ deploy:
+  provider: heroku
+  api_key: a498e89f-fd25-4904-ad19-2b23e28c7cc3
+  app: fierce-hollows-76641
+  on:
+    repo: schamblee/ui-challenge-server
