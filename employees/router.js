@@ -12,14 +12,10 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 
-
 router.get('/', (req, res) => {
-  Employee
-    router.get('/', (req, res) => {
-      return User.find()
-        .then(employees => res.json(employees.map(employee => employee.serialize())))
-        .catch(err => res.status(500).json({message: 'Internal server error'}));
-    });
+  return Employee.find()
+    .then(employees => res.json(employees.map(employee => employee.serialize())))
+    .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 
 router.post('/', (req, res) => {
