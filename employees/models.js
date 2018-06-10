@@ -20,10 +20,7 @@ const EmployeeSchema = mongoose.Schema({
     type: String
   },
   address: {
-    street: String,
-    city: String,
-    state: String,
-    zipcode: String
+    type: String
   },
   organization: {
     type: String
@@ -47,16 +44,13 @@ EmployeeSchema.methods.serialize = function() {
     lastName: this.lastName,
     email: this.email,
     phoneNumber: this.phoneNumber,
-    address: this.addressString,
+    address: this.address,
     organization: this.organization,
     department: this.department,
     title: this.title,
     createDate: this.createDate
   };
 };
-
-EmployeeSchema.virtual('addressString').get(function() {
-  return `${this.address.street} ${this.address.state}`.trim()});
 
 const Employee = mongoose.model('Employee', EmployeeSchema);
 

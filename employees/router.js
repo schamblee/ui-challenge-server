@@ -18,6 +18,18 @@ router.get('/', (req, res) => {
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 
+router.get('/employee/:id', (req, res) => {
+  Employee
+    .findById(req.params.id)
+    .then(employee => {
+      res.json( employee.serialize())
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
+
 router.post('/', (req, res) => {
   const requiredFields = ['firstName', 'lastName'];
   for (let i = 0; i < requiredFields.length; i++) {
@@ -35,12 +47,7 @@ router.post('/', (req, res) => {
       lastName: req.body.lastName,
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
-      address: {
-        street: req.body.street,
-        state: req.body.state,
-        city: req.body.city,
-        zipcode: req.body.zipcode,
-      },
+      address: req.body.address,
       organization: req.body.organization,
       department: req.body.department,
       title: req.body.title
